@@ -1,0 +1,36 @@
+@*
+ * This template takes a two arguments, a String containing a
+ * message to display and an AssetsFinder to locate static assets.
+ *@
+@(message: String)(implicit assetsFinder: AssetsFinder)
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Scala Play Framework Template", assetsFinder) {
+
+    @*
+     * Get an `Html` object by calling the built-in Play docs
+     * template and passing a `String` message.
+     *@
+    <div>
+        <section id="top">
+            <div class="wrapper">
+                <h1>Home Page</h1>
+            </div>
+        </section>
+    </div>
+
+    <div class="wrapper doc">
+        <article>
+            <h1>Welcome, this is the Home Page</h1>
+            <p>There are some links that you can prove:</p>
+            <ul>
+                <li><a href="@routes.HomeController.something">Go to something</a></li>
+                <li><a href="@routes.HomeController.docs">Go to docs</a></li>
+            </ul>
+        </article>
+    </div>
+}

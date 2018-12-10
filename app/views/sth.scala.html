@@ -1,0 +1,27 @@
+@(title: String)(implicit assetsFinder: AssetsFinder)
+
+@sthMessage = @{ "Something content" }
+
+@main(title, assetsFinder){
+    <div>
+        <section id="top">
+            <div class="wrapper">
+                <h1>This is the @sthMessage template.</h1>
+            </div>
+        </section>
+        <div id="content" class="wrapper doc">
+            <article>
+                <h1>This is the Sth Page Main Section</h1>
+                <p>Click in bellow to go back to home page</p>
+            </article>
+
+            <aside>
+                <h3>Navigation</h3>
+                <ul>
+                    <li><a href="@routes.HomeController.index">Go to home</a></li>
+                    <li><a href="@routes.HomeController.docs">Go to documentation</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+}
