@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  play-service:
+    container_name: play-container
+    build: .
+    ports:
+      - 5000:9000
+    stdin_open: true
