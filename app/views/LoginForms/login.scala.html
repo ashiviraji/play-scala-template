@@ -1,0 +1,10 @@
+@(form: Form[models.User], postUrl: Call)(implicit request: MessagesRequestHeader, assetsFinder: AssetsFinder)
+
+@import views.html.LoginForms.mainLogin
+@import views.html.LoginForms.loginform
+
+@style = { <link rel="stylesheet" media="screen" href="@assetsFinder.path("css/floating-labels.css")"> }
+
+@mainLogin("Login", assetsFinder, style) {
+    @loginform(form, postUrl)
+}

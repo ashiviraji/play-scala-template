@@ -1,0 +1,29 @@
+@*(page: String, isLoggedIn: Boolean, userInfo: UserInfo)*@
+
+@*Main(page, isLoggedIn, userInfo) {*@
+   @*<div class="container">*@
+     @*<p>In the profile page.</p> *@
+     @*<p>Only authenticated users can visit this page.  Try logging out and then attempting to retrieve /profile.</p>*@
+   @*</div>*@
+@*}*@
+
+@(logoutUrl: Call)(implicit flash: Flash, assetsFinder: AssetsFinder)
+
+@import views.html.LoginForms._
+
+@nonStyle = {  }
+
+@mainLogin("Welcome to play", assetsFinder, nonStyle) {
+    <main class="container" role="main">
+        <div class="jumbotron">
+            <h1>Welcome to Play!</h1>
+            <p class="lead">
+            @flash.get("info").getOrElse("You're now logged, so what? Let's do some code")
+            </p>
+            <div>
+                <a class="btn btn-danger" href="@logoutUrl">Logout</a>
+            </div>
+        </div>
+    </main>
+}
+

@@ -5,9 +5,9 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 
-GET /something                      controllers.HomeController.something
+GET     /something                  controllers.HomeController.something
 
-GET /docs                           controllers.HomeController.docs
+GET     /docs                       controllers.HomeController.docs
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
@@ -16,3 +16,9 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(file)
+
+# Authentication endpoints
+GET     /login                      controllers.Authentication.UserController.showLoginForm
+POST    /doLogin                    controllers.Authentication.UserController.processLoginAttempt
+GET     /profile                    controllers.Authentication.LandingPageController.showLandingPage
+GET     /logout                     controllers.Authentication.AuthenticatedUserController.logout

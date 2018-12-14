@@ -1,8 +1,11 @@
 @(message: String, style: String = "scala")(implicit assetsFinder: AssetsFinder)
 
-@main("Documentation", assetsFinder){
-    @defining(play.core.PlayVersion.current) { version =>
+@playStyle = {
+    <link rel="stylesheet" media="screen" href="@assetsFinder.path("css/main.css")">
+}
 
+@main("Documentation", assetsFinder, playStyle, false){
+    @defining(play.core.PlayVersion.current) { version =>
         <section id="top">
             <div class="wrapper">
                 <h1><a href="https://playframework.com/documentation/@version/Home">@message</a></h1>

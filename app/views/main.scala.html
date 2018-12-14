@@ -5,20 +5,54 @@
  * object to insert into the body of the page and an `AssetFinder`
  * to define to reverse route static assets.
  *@
-@(title: String, assetsFinder: AssetsFinder)(content: Html)
+@(title: String, assetsFinder: AssetsFinder, style: Html, isNavBar: Boolean)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         @* Here's where we render the page title `String`. *@
         <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@assetsFinder.path("stylesheets/main.css")">
+        @style
         <link rel="shortcut icon" type="image/png" href="@assetsFinder.path("images/scala-icon.png")">
-        <script src="@assetsFinder.path("javascripts/hello.js")" type="text/javascript"></script>
+        <script src="@assetsFinder.path("js/hello.js")" type="text/javascript"></script>
     </head>
     <body>
-        @* And here's where we render the `Html` object containing
-         * the page content. *@
+        @if(isNavBar) {
+            <header>
+                <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                    <a class="navbar-brand" href="#">Play-Scala-Template</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="@routes.HomeController.index">Home <span class="sr-only">
+                                    (current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                            <li class="nav-item dropdown">
+                                <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    User
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+                                    <a class="dropdown-item" href="#/">Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+        }
         @content
     </body>
 </html>

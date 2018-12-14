@@ -1,36 +1,30 @@
-@*
- * This template takes a two arguments, a String containing a
- * message to display and an AssetsFinder to locate static assets.
- *@
 @(message: String)(implicit assetsFinder: AssetsFinder)
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Scala Play Framework Template", assetsFinder) {
+@style = {
+    <link rel="stylesheet" media="screen" href="@assetsFinder.path("css/bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@assetsFinder.path("css/fix-navbar.css")">
+}
 
-    @*
-     * Get an `Html` object by calling the built-in Play docs
-     * template and passing a `String` message.
-     *@
-    <div>
-        <section id="top">
-            <div class="wrapper">
-                <h1>Home Page</h1>
-            </div>
-        </section>
-    </div>
+@main("Scala Play Framework Template", assetsFinder, style, true) {
+    <main class="container" role="main">
+        <div>
+            <section>
+                <div class="wrapper">
+                    <h1>Home Page</h1>
+                </div>
+            </section>
+        </div>
 
-    <div class="wrapper doc">
-        <article>
-            <h1>Welcome, this is the Home Page</h1>
-            <p>There are some links that you can prove:</p>
-            <ul>
-                <li><a href="@routes.HomeController.something">Go to something</a></li>
-                <li><a href="@routes.HomeController.docs">Go to docs</a></li>
-            </ul>
-        </article>
-    </div>
+        <div>
+            <article>
+                <h1>Welcome, this is the Home Page</h1>
+                <p>There are some links that you can prove:</p>
+                <ul>
+                    <li><a href="@routes.HomeController.something">Go to something</a></li>
+                    <li><a href="@routes.HomeController.docs">Go to docs</a></li>
+                    <li><a href="/login">Go to login</a></li>
+                </ul>
+            </article>
+        </div>
+    </main>
 }

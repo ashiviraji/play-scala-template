@@ -1,0 +1,39 @@
+@(form: Form[models.User], postUrl: Call)(implicit request: MessagesRequestHeader, assetsFinder: AssetsFinder)
+
+@import play.api.mvc.Flash._
+
+@helper.form(postUrl, 'role -> "form", 'class -> "form-signin") {
+  <div class="text-center mb-4">
+    <img src="@assetsFinder.path("images/scala-icon.png")" alt="" width="80" class="mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Scala Authentication</h1>
+    <p>Please enter your creds.</p>
+  </div>
+
+  @* @request.flash.data.map{ case (name, value) =>
+    <div class="alert alert-danger" role="alert">
+      @name: @value
+    </div>
+  } *@
+
+  @* Global errors are not tied to any particular form field *@
+  @if(form.hasGlobalErrors) {
+    @form.globalErrors.map { error: FormError =>
+      <div class="alert alert-danger" role="alert">
+        Error: @error.key: @error.message
+      </div>
+    }
+  }
+
+  @helper.CSRF.formField
+
+  <div class="form-group @if(form("username").hasErrors) {has-error}">
+    <label for="@form("username").id" class="col-sm-2 col-form-label">Username</label>
+      <input id="@form("username").id" name="@form("username").name" value="@form("username").value.getOrElse("")" class="form-control" placeholder="Type it here..." type="text" required>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group @if(form("password").hasErrors) {has-error}">
+    <label for="@form("password").id" class="col-sm-2 col-form-label">Password</label>
+      <input id="@form("password").id" name="@form("password").name" value="@form("password").value.getOrElse("")" class="form-control" placeholder="Don't worry, will be our secret..." type="password" required>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+}
