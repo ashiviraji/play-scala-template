@@ -16,7 +16,7 @@ class AuthenticatedUserAction @Inject() (parser: BodyParsers.Default) (implicit 
     val maybeUsername = request.session.get(models.Global.SESSION_USERNAME_KEY)
     maybeUsername match {
       case None => {
-        Future.successful(Forbidden("Dude, you're not logged in."))
+        Future.successful(Redirect(routes.UserController.showLoginForm))
       }
       case Some(u) => {
         val res: Future[Result] = block(request)
